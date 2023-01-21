@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    command: |
+      bash -c 'gunicorn app:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8088'
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - "8088:8088"
+
+    restart: always
